@@ -1,0 +1,6 @@
+---
+const { name, code } = Astro.props;
+const formattedCode = code.toLowerCase();
+---
+
+<img loading="lazy" class="w-16" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/5/5a/Black_question_mark.png'" alt={name + " image"} src={"https://teuteuf-dashboard-assets.pages.dev/data/common/country-shapes/" + formattedCode + ".svg"} />

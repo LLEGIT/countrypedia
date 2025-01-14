@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Australia",
+    "code": "AU"
+  },
+  {
+    "name": "New Zealand",
+    "code": "NZ"
+  },
+  {
+    "name": "Fiji",
+    "code": "FJ"
+  },
+  {
+    "name": "Papua New Guinea",
+    "code": "PG"
+  },
+  {
+    "name": "Solomon Islands",
+    "code": "SB"
+  },
+  {
+    "name": "Vanuatu",
+    "code": "VU"
+  },
+  {
+    "name": "Samoa",
+    "code": "WS"
+  },
+  {
+    "name": "Tonga",
+    "code": "TO"
+  },
+  {
+    "name": "Kiribati",
+    "code": "KI"
+  },
+  {
+    "name": "Marshall Islands",
+    "code": "MH"
+  },
+  {
+    "name": "Micronesia",
+    "code": "FM"
+  },
+  {
+    "name": "Nauru",
+    "code": "NR"
+  },
+  {
+    "name": "Palau",
+    "code": "PW"
+  },
+  {
+    "name": "Tuvalu",
+    "code": "TV"
+  }
+]

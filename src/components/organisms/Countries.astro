@@ -1,0 +1,114 @@
+---
+import CountryCard from "../molecules/CountryCard.astro";
+import world from "../../data/world.json";
+import africa from "../../data/africa.json";
+import europe from "../../data/europe.json";
+import asia from "../../data/asia.json";
+import america from "../../data/america.json";
+import oceania from "../../data/oceania.json";
+
+const continents: Continent[] = [
+    {id: "world", name: "World", file: world},
+    {id: "africa", name: "Africa", file: africa},
+    {id: "europe", name: "Europe", file: europe},
+    {id: "america", name: "America", file: america},
+    {id: "asia", name: "Asia", file: asia},
+    {id: "oceania", name: "Oceania", file: oceania},
+];
+
+interface Country {
+    name: string;
+    code: string;
+}
+
+interface Continent {
+    id: string;
+    name: string;
+    file: Country[];
+}
+---
+
+<div class="p-4 scroll-smooth flex flex-col lg:flex-wrap lg:flex-row">
+    {continents.map((continent: Continent, key: number) => (
+            <section id={"section-" + key} class="p-4 border-b border-b-black lg:w-[50%] lg:max-h-fit">
+                <header class="flex justify-between items-center">
+                    <h2 class="text-xl">{continent.name}</h2>
+                    <a href={"#toggle-" + key} id={"toggle-" + key}
+                       class="toggle-button p-2 rounded-2xl lg:hover:cursor-pointer transition lg:hover:bg-blue-200">
+                        <img alt="toggle button" class="w-4" src="./../../../src/assets/down-arrow.svg"/>
+                    </a>
+                </header>
+                <div id={"content-" + key}
+                     class="transition flex-wrap hidden mt-4">
+                    {continent.file.map((country: Country, key: number) =>
+                            <CountryCard key={key} name={country.name} code={country.code}/>)}
+                </div>
+            </section>
+    ))}
+</div>
+<button id="close-current"
+        class="hidden shadow hover:opacity-80 transition cursor-pointer fixed bottom-6 right-6 p-2 bg-green-200 text-sm rounded-2xl">
+    Close list
+</button>
+
+<script>
+    const toggleButtons = document.querySelectorAll('a.toggle-button');
+    const closeCurrent = document.getElementById('close-current');
+
+    if (toggleButtons.length > 0) {
+        for (const button of toggleButtons) {
+            if (!button) {
+                continue;
+            }
+
+            button.addEventListener("click", () => {
+                const buttonIcon = button.querySelector('img');
+
+                if (closeCurrent) {
+                    closeCurrent.classList.toggle('hidden');
+                }
+
+                if (!buttonIcon) {
+                    return;
+                }
+
+                if (button.classList.contains("active")) {
+                    buttonIcon.src = "./../../../src/assets/down-arrow.svg";
+                } else {
+                    buttonIcon.src = "./../../../src/assets/up-arrow.svg";
+                    (document.querySelector('a.toggle-button.active') as HTMLLinkElement)?.click();
+                }
+
+                button.classList.toggle("active");
+                const id = button.id.split('-')[1];
+
+                if (!id) {
+                    return;
+                }
+
+                const section = document.getElementById(`section-${id}`);
+
+                if (!section) {
+                    return;
+                }
+
+                section.classList.toggle("lg:w-[48%]");
+                section.classList.toggle("lg:w-full");
+
+                const content = document.getElementById(`content-${id}`);
+
+                if (!content) {
+                    return;
+                }
+
+                content.classList.toggle("hidden");
+                content.classList.toggle("flex");
+            });
+        }
+    }
+
+    closeCurrent?.addEventListener('click', () => {
+        const currentListButton = document.querySelector('a.toggle-button.active') as HTMLLinkElement;
+        currentListButton.click();
+    });
+</script>

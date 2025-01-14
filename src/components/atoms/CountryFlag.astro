@@ -1,0 +1,41 @@
+---
+const {name, code} = Astro.props;
+
+function handleErrorFlag(countryString: string) {
+    let onError = "this.src=";
+
+    switch (countryString) {
+        case "IO":
+            onError += "'./../../src/assets/countries/IO.jpg'";
+            break;
+        case "HM":
+            onError += "'./../../src/assets/countries/HM.png'";
+            break;
+        case "PM":
+            onError += "'./../../src/assets/countries/PM.png'";
+            break;
+        case "CS":
+            onError += "'./../../src/assets/countries/CS.png'";
+            break;
+        case "SJ":
+            onError += "'./../../src/assets/countries/SJ.webp'";
+            break;
+        case "UM":
+            onError += "'./../../src/assets/countries/UM.png'";
+            break;
+        case "BV":
+            onError += "'./../../src/assets/countries/BV.png'";
+            break;
+        default:
+            onError += "'https://upload.wikimedia.org/wikipedia/commons/5/5a/Black_question_mark.png'";
+            break;
+    }
+
+    return onError;
+}
+---
+
+<div class="w-16 h-16 flex items-center">
+    <img loading="lazy" class="w-full" onerror={handleErrorFlag(code)} alt={name + " flag"}
+         src={"https://flagsapi.com/" + code + "/flat/64.png"}>
+</div>
