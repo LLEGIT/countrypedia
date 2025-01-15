@@ -35,7 +35,7 @@ interface Continent {
                     <h2 class="text-xl">{continent.name}</h2>
                     <a href={"#toggle-" + key} id={"toggle-" + key}
                        class="toggle-button p-2 rounded-2xl lg:hover:cursor-pointer transition lg:hover:bg-blue-200">
-                        <img alt="toggle button" class="w-4" src="./../../../src/assets/down-arrow.svg"/>
+                        <img alt="toggle button" class="w-4" src="/down-arrow.svg"/>
                     </a>
                 </header>
                 <div id={"content-" + key}
@@ -73,9 +73,9 @@ interface Continent {
                 }
 
                 if (button.classList.contains("active")) {
-                    buttonIcon.src = "./../../../src/assets/down-arrow.svg";
+                    buttonIcon.src = "/down-arrow.svg";
                 } else {
-                    buttonIcon.src = "./../../../src/assets/up-arrow.svg";
+                    buttonIcon.src = "/up-arrow.svg";
                     (document.querySelector('a.toggle-button.active') as HTMLLinkElement)?.click();
                 }
 
